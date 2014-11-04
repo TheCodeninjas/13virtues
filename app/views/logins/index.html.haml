@@ -1,0 +1,9 @@
+%h2 Login
+
+=form_tag logins_path, :method => :post do
+	= label :login, :title , 'Login ID'
+	= text_field :login, :id
+
+	= submit_tag 'Login'
+
+=link_to "Register", new_student_path

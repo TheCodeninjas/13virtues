@@ -1,0 +1,10 @@
+
+%h2 Signup
+
+=form_tag students_path, :method => :post do
+	= label :student, :title, 'Name'
+	= text_field :student, :name
+	= label :student, :title, 'Email'
+	= text_field :student, :email
+
+	= submit_tag 'Register'
