@@ -1,12 +1,15 @@
 class EntriesController < ApplicationController
 	def new
+		@entry = @current_user.entries.find_by_date(Date.today)#@temp.date)
+		if @entry
+			redirect_to edit_student_entry_path @current_user, @entry
+		end
 	end
 
 	def edit
 	end
 
 	def create
-		#@current_user.entries<<@current_user.entries.build(params[:entry])
 		@temp = @current_user.entries.build(params[:entry])
 		@entry = @current_user.entries.find_by_date(@temp.date)
 		if @entry
