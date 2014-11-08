@@ -14,6 +14,6 @@ class StudentsController < ApplicationController
 	end
 
 	def show
-			redirect_to new_student_entry_path @current_user.id
+			redirect_to new_student_entry_path @current_user
 	end
 end

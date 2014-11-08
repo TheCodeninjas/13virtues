@@ -1,6 +1,7 @@
 class Entries < ActiveRecord::Migration
   def up
 		create_table 'entries' do |t|
+			t.references 'student'
 			t.date		'date'
 			t.boolean 'v1'
 			t.boolean 'v2'

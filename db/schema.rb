@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(:version => 20141108040444) do
 
   create_table "entries", :force => true do |t|
+    t.integer "student_id"
     t.date    "date"
     t.boolean "v1"
     t.boolean "v2"
