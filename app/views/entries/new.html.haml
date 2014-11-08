@@ -1,0 +1,16 @@
+%h2 New Entry
+
+=form_tag student_entries_path, :method=> :post do
+	%table
+		%tbody
+			%tr
+				%td
+					= label :entry, :title, 'V1 violated'
+					= check_box :entry, :v1
+			%tr
+				%td
+					= label :entry, :title, 'V2 violated'
+					= check_box :entry, :v2
+			%tr
+				%td
+					= submit_tag "Make Entry"

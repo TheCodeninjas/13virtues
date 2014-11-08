@@ -7,11 +7,11 @@
     = csrf_meta_tags
  
   %body
+    - if session[:user]
+      =link_to 'Logout '+session[:user].name+' '+session[:user].email, '/logout'#logins_path, :method=>:destroy
+
     - if flash[:msg]
       =flash[:msg]
-
-    - if session[:user]
-      =link_to 'Logout', '/logout'#logins_path, :method=>:destroy
 
     #main
       = yield

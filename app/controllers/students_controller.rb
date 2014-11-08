@@ -14,10 +14,6 @@ class StudentsController < ApplicationController
 	end
 
 	def show
-		if session[:user] == nil
-			redirect_to logins_path
-		else
-			@user = Student.find(session[:user])
-		end
+			redirect_to new_student_entry_path @current_user.id
 	end
 end
