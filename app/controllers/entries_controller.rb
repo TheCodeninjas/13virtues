@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
 	def new
-		@entry = @current_user.entries.find_by_date(Date.today)#@temp.date)
+		@entry = @current_user.entries.find_by_date(Date.today)
 		if @entry
 			redirect_to edit_student_entry_path @current_user, @entry
 		end

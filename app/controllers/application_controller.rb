@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
 	protected
 	def set_current_user
-		@current_user = Student.find session[:user]
+		@current_user = Student.find session[:user] if session[:user]
 		unless @current_user
 			redirect_to logins_path
 		end

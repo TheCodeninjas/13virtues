@@ -1,17 +1,24 @@
 !!! 5
 %html
-  %head
-    %title 13Virtues Tracker!
-    = stylesheet_link_tag 'application'
-    = javascript_include_tag 'application'
-    = csrf_meta_tags
+	%head
+		%title 13Virtues Tracker!
+		= stylesheet_link_tag 'application'
+		= javascript_include_tag 'application'
+		= csrf_meta_tags
  
-  %body
-    - if @current_user
-      =link_to 'Logout '+@current_user.name+' '+@current_user.email, '/logout'#logins_path, :method=>:destroy
+	%body
+		- if @current_user
+			%table
+				%tbody
+					%tr
+						%td
+							Welcome
+							= @current_user.name+'!!'+' ('+@current_user.email+')'
+						%td
+							=link_to 'Logout ', '/logout'
 
-    - if flash[:msg]
-      =flash[:msg]
+		- if flash[:msg]
+			=flash[:msg]
 
-    #main
-      = yield
+		#main
+			= yield
