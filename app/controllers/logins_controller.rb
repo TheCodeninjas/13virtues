@@ -9,8 +9,9 @@ class LoginsController < ApplicationController
 		if @st.length == 0 then
 			redirect_to logins_path
 		else
-			session[:user] = @st[0]
-			redirect_to student_path @st[0]
+			session[:user] = @st[0].id
+			@current_user = @st[0]
+			redirect_to student_path @current_user
 		end
 	end
 
