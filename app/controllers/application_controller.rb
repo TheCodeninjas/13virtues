@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 	def set_current_user
 		@current_user = Student.find session[:user] if session[:user]
 		unless @current_user
+			flash[:msg] = "Wrong credentials"
 			redirect_to logins_path
 		end
 	end

@@ -7,6 +7,7 @@ class LoginsController < ApplicationController
 		@id = params[:login][:id]
 		@st = Student.where("email = :id", :id => @id)
 		if @st.length == 0 then
+			flash[:msg] = "Wrong credentials"
 			redirect_to logins_path
 		else
 			session[:user] = @st[0].id

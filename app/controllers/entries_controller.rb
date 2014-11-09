@@ -7,6 +7,7 @@ class EntriesController < ApplicationController
 	end
 
 	def edit
+		@entry = @current_user.entries.find params[:id]
 	end
 
 	def create
