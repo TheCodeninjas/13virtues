@@ -5,13 +5,13 @@ class LoginsController < ApplicationController
 
 	def create
 		@id = params[:login][:id]
-		@st = Student.where("email = :id", :id => @id)
-		if @st.length == 0 then
+		@st = Student.find_by_email(@id)
+		unless @st then
 			flash[:msg] = "Wrong credentials"
 			redirect_to logins_path
 		else
-			session[:user] = @st[0].id
-			@current_user = @st[0]
+			session[:user] = @st.id
+			@current_user = @st
 			redirect_to student_path @current_user
 		end
 	end

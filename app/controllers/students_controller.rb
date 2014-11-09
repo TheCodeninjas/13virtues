@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-	skip_before_filter :set_current_user
+	skip_before_filter :set_current_user, :only=>[:create, :new]
 	def index
 		@students = Student.all
 	end
