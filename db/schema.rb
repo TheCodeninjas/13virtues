@@ -11,7 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141108040444) do
+ActiveRecord::Schema.define(:version => 20141113043230) do
+
+  create_table "classrooms", :force => true do |t|
+    t.date   "startdate"
+    t.string "label"
+  end
 
   create_table "entries", :force => true do |t|
     t.integer "student_id"
@@ -31,9 +36,35 @@ ActiveRecord::Schema.define(:version => 20141108040444) do
     t.boolean "v13"
   end
 
+  create_table "notes", :force => true do |t|
+    t.integer "participant_id"
+    t.string  "note"
+  end
+
+  create_table "participants", :force => true do |t|
+    t.integer "user_id"
+    t.integer "classroom_id"
+    t.integer "type"
+  end
+
   create_table "students", :force => true do |t|
     t.string "name"
     t.string "email"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string  "first_name"
+    t.string  "last_name"
+    t.string  "email"
+    t.string  "uid"
+    t.integer "type"
+  end
+
+  create_table "virtueentries", :force => true do |t|
+    t.integer "participant_id"
+    t.integer "v_id"
+    t.date    "date"
+    t.boolean "violated"
   end
 
 end
