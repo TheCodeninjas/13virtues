@@ -4,7 +4,10 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		@user = User.create! params[:user]
+		@user = User.new params[:user]
+		@user.user_type = 0
+		@user.save!
+
 		flash[:msg] = "You've been registered"
 		redirect_to sessions_path
 	end

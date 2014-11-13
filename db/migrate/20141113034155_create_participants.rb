@@ -3,7 +3,7 @@ class CreateParticipants < ActiveRecord::Migration
 		create_table 'participants' do |t|
 			t.references 'user'
 			t.references 'classroom'
-			t.integer 'type'
+			t.integer 'participant_type'
 		end
   end
 

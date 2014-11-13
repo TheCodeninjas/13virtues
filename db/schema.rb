@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(:version => 20141113043230) do
   create_table "participants", :force => true do |t|
     t.integer "user_id"
     t.integer "classroom_id"
-    t.integer "type"
+    t.integer "participant_type"
   end
 
   create_table "students", :force => true do |t|
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20141113043230) do
     t.string  "last_name"
     t.string  "email"
     t.string  "uid"
-    t.integer "type"
+    t.integer "user_type"
   end
 
   create_table "virtueentries", :force => true do |t|

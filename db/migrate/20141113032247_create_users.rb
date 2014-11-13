@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration
 			t.string 'last_name'
 			t.string 'email'
 			t.string 'uid'
-			t.integer 'type'
+			t.integer 'user_type'
 		end
   end
 
