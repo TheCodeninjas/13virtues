@@ -13,5 +13,8 @@ class UsersController < ApplicationController
 	end
 
 	def show
+		#@is_admin = true if @current_user.type == 0
+		@can_create_class = true if @current_user.user_type == 0
+		@class_rooms = @current_user.classrooms
 	end
 end

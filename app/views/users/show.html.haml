@@ -1,1 +1,29 @@
+%table
+	%thead
+		%tr
+			%th
+				Registered Classes
+			%th
+				Start Date
+	%tbody
+		-@class_rooms.each do |class_room|
+			%tr
+				%td=@class_room.name
+			%tr
+				%td=@class_room.date
 
+%h3 Register for Class
+=form_tag user_classrooms_path, :method=>post do
+	%table
+		%tbody
+			%tr
+				%td
+					= label :classroom, :date, 'Class Name'
+					= text_field :classroom, :name
+			%tr
+				%td
+					= label :classroom, :date, 'Start Date'
+					= date_select :classroom, :date
+			%tr
+				%td
+					= submit_tag "Create Class"

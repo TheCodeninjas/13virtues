@@ -3,6 +3,7 @@ class CreateClassrooms < ActiveRecord::Migration
 		create_table 'classrooms' do |t|
 			t.date 'startdate'
 			t.string 'name'
+			t.string 'class_key'
 		end
   end
 
