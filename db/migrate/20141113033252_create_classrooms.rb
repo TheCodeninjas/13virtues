@@ -2,7 +2,7 @@ class CreateClassrooms < ActiveRecord::Migration
   def up
 		create_table 'classrooms' do |t|
 			t.date 'startdate'
-			t.string 'label'
+			t.string 'name'
 		end
   end
 

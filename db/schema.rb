@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20141113043230) do
 
   create_table "classrooms", :force => true do |t|
     t.date   "startdate"
-    t.string "label"
+    t.string "name"
   end
 
   create_table "entries", :force => true do |t|
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20141113043230) do
   end
 
   create_table "notes", :force => true do |t|
-    t.integer "participant_id"
+    t.integer "virtueentry_id"
     t.string  "note"
   end
 

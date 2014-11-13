@@ -1,7 +1,7 @@
 class CreateNotes < ActiveRecord::Migration
   def up
 		create_table 'notes' do |t|
-			t.references 'participant'
+			t.references 'virtueentry'
 			t.string 'note'
 		end
   end
