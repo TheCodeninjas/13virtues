@@ -1,0 +1,37 @@
+%h2 Welcome to Benjamin Franklin's Virtues' tracker
+
+%table
+	%tbody
+		%tr
+			%td
+				=form_tag sessions_path, :method => :post do
+					%table
+						%tbody
+							%tr
+								%td
+									= label :session, :title , 'Login ID (email id)'
+							%tr
+								%td
+									= text_field :session, :id
+							%tr
+								%td
+									= submit_tag 'Login'
+			%td
+				=form_tag users_path, :method => :post do
+					%table
+						%tbody
+							%tr
+								%td
+									= label :user, :title, 'First Name'
+									= text_field :user, :first_name
+							%tr
+								%td
+									= label :user, :title, 'Last Name'
+									= text_field :user, :last_name
+							%tr
+								%td
+									= label :user, :title, 'Email'
+									= text_field :user, :email
+							%tr
+								%td
+									= submit_tag 'Register'

@@ -13,9 +13,11 @@
 					%tr
 						%td
 							Welcome
-							= @current_user.name+'!!'+' ('+@current_user.email+')'
+							//= @current_user.name+'!!'+' ('+@current_user.email+')'
+							= @current_user.first_name+'!!'+' ('+@current_user.email+')'
 						%td
-							=link_to 'Logout ', '/logout'
+							//=link_to 'Logout ', '/logout'
+							=link_to 'Sign out', '/signout'
 
 		- if flash[:msg]
 			=flash[:msg]
