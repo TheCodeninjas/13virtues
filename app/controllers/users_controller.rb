@@ -5,16 +5,15 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new params[:user]
-		@user.user_type = 0
+		@user.user_type = User.non_admin_type
 		@user.save!
 
-		flash[:msg] = "You've been registered"
+		flash[:msg] = "Your account is created!"
 		redirect_to sessions_path
 	end
 
 	def show
-		#@is_admin = true if @current_user.type == 0
-		@can_create_class = true if @current_user.user_type == 0
+		@can_create_class = @current_user.can_create_class?
 		@class_rooms = @current_user.classrooms
 	end
 end

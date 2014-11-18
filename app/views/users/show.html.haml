@@ -11,8 +11,25 @@
 				%td=class_room.name
 				%td=class_room.startdate
 
-%h3 Add new Class
-=form_tag user_classrooms_path(@current_user), :method=>:post do
+-if @can_create_class
+	%h3 Add new Class
+	=form_tag classrooms_path, :method=>:post do
+		%table
+			%tbody
+				%tr
+					%td
+						= label :classroom, :name, 'Class Name'
+						= text_field :classroom, :name
+				%tr
+					%td
+						= label :classroom, :startdate, 'Start Date'
+						= date_select :classroom, :startdate
+				%tr
+					%td
+						= submit_tag "Create Class"
+
+%h3 Register for Class
+=form_tag register_classrooms_path, :method=>:post do
 	%table
 		%tbody
 			%tr
@@ -21,8 +38,4 @@
 					= text_field :classroom, :name
 			%tr
 				%td
-					= label :classroom, :startdate, 'Start Date'
-					= date_select :classroom, :startdate
-			%tr
-				%td
-					= submit_tag "Create Class"
+					= submit_tag "Register for Class"

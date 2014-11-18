@@ -55,10 +55,13 @@ Virtues13::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
-	resources :users do
-		resources :classrooms do
-			resources :entries
+	resources :users
+
+	resources :classrooms do
+		collection do
+			post 'register'
 		end
+		resources :entries
 	end
 
 	resources :sessions
