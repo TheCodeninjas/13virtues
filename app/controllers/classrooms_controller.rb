@@ -7,7 +7,9 @@ class ClassroomsController < ApplicationController
 		class_room.class_key = string
 		class_room.save!
 
-		registration = 
+		registration = Classregistration.new
+		@current_user.classregistrations<<registration;
+		class_room.classregistrations<<registration;
 		redirect_to :back
 	end
 end

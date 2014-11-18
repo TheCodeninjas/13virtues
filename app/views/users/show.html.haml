@@ -8,9 +8,8 @@
 	%tbody
 		-@class_rooms.each do |class_room|
 			%tr
-				%td=@class_room.name
-			%tr
-				%td=@class_room.startdate
+				%td=class_room.name
+				%td=class_room.startdate
 
 %h3 Add new Class
 =form_tag user_classrooms_path(@current_user), :method=>:post do
