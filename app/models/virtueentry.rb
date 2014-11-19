@@ -1,4 +1,4 @@
 class Virtueentry < ActiveRecord::Base
-	belongs_to :participant
-	attr_accessible :v_id, :date, :violated
+	belongs_to :classregistration
+	attr_accessible :v_id, :date, :violation_count
 end

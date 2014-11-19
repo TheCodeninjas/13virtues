@@ -1,0 +1,15 @@
+%h3 Add new Class
+=form_tag classrooms_path, :method=>:post do
+	%table
+		%tbody
+			%tr
+				%td
+					= label :classroom, :name, 'Class Name'
+					= text_field :classroom, :name
+			%tr
+				%td
+					= label :classroom, :startdate, 'Start Date'
+					= date_select :classroom, :startdate
+			%tr
+				%td
+					= submit_tag "Create Class"

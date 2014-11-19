@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
 	skip_before_filter :set_current_user, :only=>[:index, :create]
 	def index
+		user = User.find session[:user] if session[:user]
+		redirect_to user_path user if user
 	end
 
 	def create

@@ -1,0 +1,14 @@
+%h2 Class members
+%table
+	%thead
+		%tr
+			%th First name
+			%th Last name
+			%th Email
+	%tbody
+		-@class_members.each do |member|
+			%tr
+				%td= member.first_name
+				%td= member.last_name
+				%td= member.email
+

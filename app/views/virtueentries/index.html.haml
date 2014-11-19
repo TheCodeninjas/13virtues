@@ -1,0 +1,16 @@
+%h2 Entries
+%table
+	%thead
+		%tr
+			%th Virtue#
+			%th Date
+			%th Violations
+	%tbody
+		-if @entries
+			-@entries.each do |entry|
+				%tr
+					%td= entry.v_id
+					%td= entry.date
+					%td= entry.violation_count
+
+=link_to 'Create Entry', new_classroom_virtueentry_path

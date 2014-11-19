@@ -1,10 +1,10 @@
 class CreateVirtueentries < ActiveRecord::Migration
   def up
 		create_table 'virtueentries' do |t|
-			t.references 'participant'
+			t.references 'classregistration'
 			t.integer 'v_id'
 			t.date 'date'
-			t.boolean 'violated'
+			t.integer 'violation_count'
 		end
   end
 

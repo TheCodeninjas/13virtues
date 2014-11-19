@@ -58,10 +58,10 @@ Virtues13::Application.routes.draw do
 	resources :users
 
 	resources :classrooms do
+		resources :virtueentries
 		collection do
 			post 'register'
 		end
-		resources :entries
 	end
 
 	resources :sessions

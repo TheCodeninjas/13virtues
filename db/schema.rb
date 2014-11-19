@@ -62,10 +62,10 @@ ActiveRecord::Schema.define(:version => 20141113193828) do
   end
 
   create_table "virtueentries", :force => true do |t|
-    t.integer "participant_id"
+    t.integer "classregistration_id"
     t.integer "v_id"
     t.date    "date"
-    t.boolean "violated"
+    t.integer "violation_count"
   end
 
 end

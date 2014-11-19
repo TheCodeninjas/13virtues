@@ -1,6 +1,7 @@
 class Classregistration < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :classroom
+	has_many :virtueentries
 	attr_accessible :classregistration_type
 
 	def self.admin_type
