@@ -51,7 +51,7 @@ class ClassroomsController < ApplicationController
 		elsif @current_user.classrooms.find_by_id class_room
 			flash[:msg] = "You're alredy registered to this class!"
 		else
-			registration = Classregistration.new :classregistration_type => Classregistration.non_admin_type
+			registration = Classregistration.new :classregistration_type => Classregistration.student_pending_approval
 			@current_user.classregistrations<<registration
 			class_room.classregistrations<<registration
 

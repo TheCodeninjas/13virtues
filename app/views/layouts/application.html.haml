@@ -8,9 +8,12 @@
  
 	%body
 		- if @current_user
-			%table
+			%table#header
 				%tbody
 					%tr
+						%td
+							%h2
+								=link_to '13 Virtues Tracker', user_path(@current_user)
 						%td
 							Welcome
 							//= @current_user.name+'!!'+' ('+@current_user.email+')'

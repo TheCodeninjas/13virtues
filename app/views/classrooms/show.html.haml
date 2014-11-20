@@ -14,7 +14,7 @@
 				%td= member.user.email
 				-if member.classregistration_type == Classregistration.admin_type
 					%td Admin
-				-elsif member.classregistration_type == Classregistration.non_admin_type
+				-elsif member.classregistration_type == Classregistration.student
 					%td Student
 				-else
 					%td Student - pending approval

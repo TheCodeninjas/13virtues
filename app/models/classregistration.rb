@@ -7,10 +7,10 @@ class Classregistration < ActiveRecord::Base
 	def self.admin_type
 		return 0
 	end
-	def self.non_admin_type
+	def self.student
 		return 1
 	end
-	def self.pending_approval
+	def self.student_pending_approval
 		return 2
 	end
 end

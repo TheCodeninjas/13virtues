@@ -12,7 +12,12 @@
  *= require_tree .
  */
 
-table.tb{
+table#header {
+	width: 90%;
+	background-color: lightsteelblue;
+}
+
+table.tb {
 	margin: 10px;
 	text-align: center;
 }
