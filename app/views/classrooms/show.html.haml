@@ -1,14 +1,21 @@
 %h2 Class members
-%table
+%table.tb
 	%thead
 		%tr
 			%th First name
 			%th Last name
 			%th Email
+			%th Registration
 	%tbody
-		-@class_members.each do |member|
+		-@classmembers.each do |member|
 			%tr
-				%td= member.first_name
-				%td= member.last_name
-				%td= member.email
+				%td= member.user.first_name
+				%td= member.user.last_name
+				%td= member.user.email
+				-if member.classregistration_type == Classregistration.admin_type
+					%td Admin
+				-elsif member.classregistration_type == Classregistration.non_admin_type
+					%td Student
+				-else
+					%td Student - pending approval
 

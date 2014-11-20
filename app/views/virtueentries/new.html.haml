@@ -1,6 +1,6 @@
 %h2 Enter violation
 =form_tag classroom_virtueentries_path(@classroom), :method=>:post do
-	%table
+	%table.form
 		%tbody
 			%tr
 				%td
@@ -14,6 +14,10 @@
 				%td
 					= label :virtueentry, :v_id, 'Violation count'
 					= text_field :virtueentry, :violation_count
+			%tr
+				%td
+					= label :note, :note, 'Notes'
+					= text_field :note, :note
 			%tr
 				%td
 					= submit_tag "Make Entry"

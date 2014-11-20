@@ -10,4 +10,7 @@ class Classregistration < ActiveRecord::Base
 	def self.non_admin_type
 		return 1
 	end
+	def self.pending_approval
+		return 2
+	end
 end

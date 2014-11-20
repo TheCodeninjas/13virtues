@@ -34,7 +34,7 @@ class ClassroomsController < ApplicationController
 		#@classregistration = Classregistration.find_by_user_id_and_classroom_id @current_user, @classroom
 		@classregistration = @current_user.classregistrations.find_by_classroom_id @classroom
 		if @classregistration.classregistration_type == Classregistration.admin_type
-			@class_members = @classroom.users
+			@classmembers = @classroom.classregistrations
 		else
 			redirect_to classroom_virtueentries_path @classroom
 

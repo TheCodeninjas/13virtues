@@ -11,3 +11,24 @@
  *= require_self
  *= require_tree .
  */
+
+table.tb{
+	margin: 10px;
+	text-align: center;
+}
+
+table.form {
+	border-style: solid;
+	border-width: 1px;
+}
+
+table.tb th {
+	border: 1px;
+	font-weight: bold;
+	background-color: steelblue;
+	color: white;
+}
+
+table.tb tr:nth-child(even){
+	background: lightblue;
+}

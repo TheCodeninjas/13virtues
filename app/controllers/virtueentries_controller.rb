@@ -9,8 +9,12 @@ class VirtueentriesController < ApplicationController
 	end
 
 	def create
-		@classregistration.virtueentries.create params[:virtueentry]
-		redirect_to 
+		cr = @classregistration.virtueentries.create params[:virtueentry]
+		if params[:note]
+			cr.note = Note.new(params[:note])
+			cr.save!
+		end
+		redirect_to :back
 	end
 
 	protected
