@@ -1,21 +1,24 @@
-%h2 Class members
-%table.tb
-	%thead
-		%tr
-			%th First name
-			%th Last name
-			%th Email
-			%th Registration
-	%tbody
-		-@classmembers.each do |member|
+=link_to 'Statistics', classroom_statistics_path(@classroom)
+-if @classmembers
+	%h2 Class members
+	%table.tb
+		%thead
 			%tr
-				%td= member.user.first_name
-				%td= member.user.last_name
-				%td= member.user.email
-				-if member.classregistration_type == Classregistration.admin_type
-					%td Admin
-				-elsif member.classregistration_type == Classregistration.student
-					%td Student
-				-else
-					%td Student - pending approval
-
+				%th First name
+				%th Last name
+				%th Email
+				%th Registration
+		%tbody
+			-@classmembers.each do |member|
+				%tr
+					%td= member.user.first_name
+					%td= member.user.last_name
+					%td= member.user.email
+					-if member.classregistration_type == Classregistration.admin_type
+						%td Admin
+					-elsif member.classregistration_type == Classregistration.student
+						%td Student
+					-else
+						%td Student - pending approval
+-else
+	=link_to 'Entry', classroom_virtueentries_path(@classroom)

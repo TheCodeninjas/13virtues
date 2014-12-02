@@ -36,7 +36,7 @@ class ClassroomsController < ApplicationController
 		if @classregistration.classregistration_type == Classregistration.admin_type
 			@classmembers = @classroom.classregistrations
 		else
-			redirect_to classroom_virtueentries_path @classroom
+			;#redirect_to classroom_virtueentries_path @classroom
 
 		#@week = ((Date.today-@classroom.startdate)/7).to_i + 1
 		#if @week < 1 || @week > 13

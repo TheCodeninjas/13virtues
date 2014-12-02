@@ -21,6 +21,7 @@ module NavigationHelpers
 
 		when /^the main page for (.+)/
 			u = User.find_by_email($1)
+			assert(u)
 			user_path(u)
 
     # Add more mappings here.

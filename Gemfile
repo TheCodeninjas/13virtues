@@ -48,4 +48,5 @@ group :development, :test do
 	gem 'database_cleaner'
 	gem 'capybara'
 	gem 'launchy'
+	gem 'calendar_helper', '~> 0.2.6'
 end

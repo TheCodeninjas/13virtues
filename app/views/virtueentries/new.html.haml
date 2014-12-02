@@ -1,4 +1,7 @@
 %h2 Enter violation
+= calendar(:year=>2014, :month=>12) do |d|
+	-link_to d.day, classroom_virtueentries_path(d)
+
 =form_tag classroom_virtueentries_path(@classroom), :method=>:post do
 	%table.form
 		%tbody

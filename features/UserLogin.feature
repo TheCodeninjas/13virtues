@@ -1,13 +1,19 @@
 Feature: User can login to website
 
-Scenario: Login to website
-	Given I am on the login page
-	When I fill in "First Name" with "test"
-	And I fill in "Email" with "test"
-	And I press "Register"
+Scenario: User registration
+	Given I have registered as "test"
 	Then I should be on the login page
 
-	When I fill in "Login ID" with "test"
-	And I press "Login"
-	Then I should be on the main page for test
-	And I should see "Welcome test"
+Scenario: Student login to website
+	Given I have registered as "test"
+	When I login as "test"
+	Then I am logged in as "test"
+
+Scenario: Admin login to website
+	Given I have logged in as admin
+	Then I am logged in as "root"
+
+Scenario: Logout
+	Given I have logged in as "test"
+	When I follow "Sign out"
+	Then I should see "You're signed out"

@@ -59,6 +59,7 @@ Virtues13::Application.routes.draw do
 
 	resources :classrooms do
 		resources :virtueentries
+		resources :statistics
 		collection do
 			post 'register'
 		end
