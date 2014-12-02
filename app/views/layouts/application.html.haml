@@ -4,7 +4,9 @@
 		%title 13Virtues Tracker!
 		= stylesheet_link_tag 'application'
 		= javascript_include_tag 'application'
+		= javascript_include_tag 'https://www.google.com/jsapi'
 		= csrf_meta_tags
+		= yield(:javascripts)
  
 	%body
 		%table#header

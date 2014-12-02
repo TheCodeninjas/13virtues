@@ -1,2 +1,9 @@
 Statistics for
 =@classroom.name
+
+:javascript
+	var stats = #{@violations.to_json};
+
+%div{:id=>"chart_div", :style=>"width:600px; height:400px;"}
+- content_for :javascripts do
+	= javascript_include_tag 'statistics'
