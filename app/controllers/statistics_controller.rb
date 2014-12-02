@@ -27,7 +27,11 @@ class StatisticsController < ApplicationController
 			en_date = st_date+6
 
 			(1..week+1).to_a.each do|i|
-				viols = @classregistration.virtueentries.find_all_by_v_id_and_date i-1, st_date..en_date
+				if @classregistration.classregistration_type == Classregistration.admin_type
+					viols = @classroom.virtueentries.find_all_by_v_id_and_date i-1, st_date..en_date
+				else
+					viols = @classregistration.virtueentries.find_all_by_v_id_and_date i-1, st_date..en_date
+				end
 				viols.each do |viol|
 					@violations[wk][i] += viol.violation_count
 				end
