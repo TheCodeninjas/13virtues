@@ -6,14 +6,19 @@ class VirtueentriesController < ApplicationController
 	end
 
 	def new
+		@entries = Array.new(@week) { @classregistration.virtueentries.build }
+		@notes = Array.new(@week) { Note.new }
 	end
 
 	def create
-		cr = @classregistration.virtueentries.create params[:virtueentry]
-		if params[:note]
-			cr.note = Note.new(params[:note])
-			cr.save!
+		params[:entries].each_value do |entry|
+			cr = @classregistration.virtueentries.create(entry.except 'note')
+			if entry[:note]
+				cr.note = Note.new(:note=>entry['note'])
+				cr.save!
+			end
 		end
+
 		redirect_to :back
 	end
 
@@ -28,6 +33,7 @@ class VirtueentriesController < ApplicationController
 		if !@classregistration
 			redirect_to :back
 		end
+		@week = ((Date.today-@classroom.startdate)/7).to_i + 1
 	end
 end
 
