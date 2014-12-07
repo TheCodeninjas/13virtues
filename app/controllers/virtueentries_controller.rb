@@ -22,6 +22,13 @@ class VirtueentriesController < ApplicationController
 		redirect_to :back
 	end
 
+  def destroy
+    @entries_to_be_del = @classregistration.virtueentries
+    @entries_to_be_del.delete_all
+    logger.warn "Entries Deleted!"
+    redirect_to classroom_path(@classroom)
+  end
+
 	protected
 	def check_classroom_user
 		@classroom = Classroom.find_by_id params[:classroom_id]
@@ -34,6 +41,7 @@ class VirtueentriesController < ApplicationController
 			redirect_to :back
 		end
 		@week = ((Date.today-@classroom.startdate)/7).to_i + 1
-	end
+  end
+
 end
 
