@@ -15,7 +15,4 @@ class User < ActiveRecord::Base
 	def self.non_admin_type
 		return 1
 	end
-  def approval
-    user_type = User.student
-  end
 end

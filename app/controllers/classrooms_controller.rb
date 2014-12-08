@@ -59,26 +59,4 @@ class ClassroomsController < ApplicationController
 		end
 		redirect_to :back
 	end
-
-  def edit
-    @classroom = @current_user.classrooms.find_by_id params[:id]
-    if !@classroom
-      flash[:msg] = "No classroom itself"
-    else
-      flash[:msg] = "Editing for approval"+params[:id]
-      @current_user = User.find params[:param2]
-      if @current_user
-        @classregistration = @current_user.classregistrations.find_by_classroom_id @classroom
-        @classregistration.classregistration_type = Classregistration.student
-        @classregistration.save!
-        #@current_user.save!
-        #@classroom.save!
-
-        flash[:msg] = "Student "+@current_user.first_name+" approved for this class"
-      else
-        flash[:msg] = "Student doesn't exist"
-      end
-    end
-    redirect_to :back
-  end
 end
