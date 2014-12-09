@@ -10,17 +10,3 @@ Migrating to CreateNotes (20141113043230)
 Migrating to CreateClassregistrations (20141113193828)
   [1m[35m (0.4ms)[0m  select sqlite_version(*)
   [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
-Connecting to database specified by database.yml
-Connecting to database specified by database.yml
-Connecting to database specified by database.yml
-Connecting to database specified by database.yml
-  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
-Migrating to CreateStudents (20141103201517)
-Migrating to Entries (20141108040444)
-Migrating to CreateUsers (20141113032247)
-Migrating to CreateClassrooms (20141113033252)
-Migrating to CreateVirtueentries (20141113042939)
-Migrating to CreateNotes (20141113043230)
-Migrating to CreateClassregistrations (20141113193828)
-  [1m[35m (0.5ms)[0m  select sqlite_version(*)
-  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
