@@ -6,24 +6,21 @@
 	%table.form
 		%tbody
 			%tr
-			-@entries.each_with_index do |entry, index|
-				=fields_for "entries[#{index}]", entry do |v|
-					%tr
-						%td
-							= v.label :date, 'Date'
-							= v.date_select :date
-					%tr
-						%td
-							= v.label :v_id, 'Virtue id'
-							= v.text_field :v_id
-					%tr
-						%td
-							= v.label :violation_count, 'Violation count'
-							= v.text_field :violation_count
-					%tr
-						%td
-							= v.label :note, 'Note'
-							= v.text_field :note
+				%td
+					= label :virtueentry, :date, 'Date'
+					= date_select :virtueentry, :date
+			%tr
+				%td
+					= label :virtueentry, :v_id, 'Virtue id'
+					= text_field :virtueentry, :v_id
+			%tr
+				%td
+					= label :virtueentry, :v_id, 'Violation count'
+					= text_field :virtueentry, :violation_count
+			%tr
+				%td
+					= label :note, :note, 'Notes'
+					= text_field :note, :note
 			%tr
 				%td
 					= submit_tag "Make Entry"
