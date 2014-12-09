@@ -1,31 +1,4 @@
 Virtues13::Application.routes.draw do
-  
-  GoogleAuthExample::Application.routes.draw do
-    get 'auth/:provider/callback', to: 'sessions#create'
-    get 'auth/failure', to: redirect('/')
-    get 'signout', to: 'sessions#destroy', as: 'signout'
-
-    resources :sessions, only: [:create, :destroy]
-    resource :home, only: [:show]
-
-    root to: "home#show"
-  end
-  
-  get "sessions/create"
-
-  get "sessions/destroy"
-
-  get "home/show"
-
-  match '/auth/admin/callback', :to => 'sessions#authenticate_admin'
-
-  constraints :subdomain => 'admin' do
-    scope :module => 'admin', :as => 'admin' do
-      root :to => 'users#index'
-      resources :users
-      # etc.
-    end
-  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -102,4 +75,8 @@ Virtues13::Application.routes.draw do
 	resources :logins
   #root :to => redirect('/logins')
 	get 'logout' => 'logins#destroy'
+
+  # route to delete all entries for a user in a particular class
+  delete '/classrooms/:classroom_id/virtueentries/' => "virtueentries#destroy", as: 'classroom_virtueentries'
+
 end

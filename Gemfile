@@ -7,7 +7,6 @@ gem 'rails', '3.2.16'
 
 gem 'sqlite3'
 
-gem 'omniauth-google-oauth2', '~> 0.2.1'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -42,7 +41,7 @@ gem 'jquery-rails'
 gem 'haml'
 # use Ruby debugger
 group :development, :test do
-#  gem 'debugger'
+  gem 'debugger'
 
 	gem 'cucumber-rails', :require=>false
 	gem 'cucumber-rails-training-wheels'
