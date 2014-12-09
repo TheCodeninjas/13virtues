@@ -1,0 +1,30 @@
+%h2 Enter violation
+-$year=Date.today.year
+-$month=Date.today.month
+//-link_to "Next Month", Date.today.month + 1.month
+//-link_to "Next Year", Date.today.year + 1.year
+= calendar(:year=>$year, :month=>$month) do |d|
+  -link_to  d.day,  editall_classroom_virtueentries_path(@classroom, d)
+
+=form_tag classroom_virtueentries_path, :method=>:post do
+  %table.form
+    %tbody
+      %tr
+        -if @entries  ||  !@entries.nil?
+          -@entries.each_with_index do |entry, index|
+            =fields_for "entries[#{index}]", entry do |v|
+              %tr
+                %td
+                  = v.label :v_id, 'Virtue ID: '
+                  = v.text_field :v_id, :readonly => true
+              %tr
+                %td
+                  = v.label :violation_count, 'Violation Count'
+                  = v.text_field :violation_count
+              %tr
+                %td
+                  = v.label :note, 'Note'
+                  = v.text_field :note
+          %tr
+            %td
+              = submit_tag "Save Changes"

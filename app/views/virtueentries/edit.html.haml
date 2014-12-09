@@ -1,0 +1,29 @@
+%h2 Edit Violation
+= calender(:year=>2014, :month=>12) do |d|
+  -link_to d.day, classroom_virtueentries_path(d)
+
+=form_tag classroom_virtueentry_path(@classroom), :method=>:put do
+	%table.form
+		%tbody
+      %tr
+			-@entries.each_with_index do |entry, index|
+        =fields_for "entries[#{index}]", entry do |v|
+          %tr
+            %td
+					    = v.label :date, 'Date: '
+					    = v.date_select :date
+          %tr
+            %td
+              = v.label :v_id, 'Virtue ID'
+              = v.label :v_id
+          %tr
+            %td
+              = v.label :violation_count'Violation Count'
+              = v.label :violation_count
+          %tr
+            %td
+              = v.label :note 'Note'
+              = v.text_field :note
+        %tr
+          %td
+            = submit_tag "Edit Entry"

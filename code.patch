@@ -1,0 +1,177 @@
+diff --git a/app/controllers/virtueentries_controller.rb b/app/controllers/virtueentries_controller.rb
+index 6ffe78c..dfbcb6d 100644
+--- a/app/controllers/virtueentries_controller.rb
++++ b/app/controllers/virtueentries_controller.rb
+@@ -5,22 +5,56 @@ class VirtueentriesController < ApplicationController
+ 		@entries=@classregistration.virtueentries
+ 	end
+ 
+-	def new
+-		@entries = Array.new(@week) { @classregistration.virtueentries.build }
+-		@notes = Array.new(@week) { Note.new }
+-	end
++	def editall
++#    flash[:notice] = "inside editall
++    @@date = params[:date].to_date
++    if Date.today>= @@date
++      @@week = (((params[:date].to_date)-@classroom.startdate).to_i)/7 + 1
++      @entries = Array.new(@@week) { @classregistration.virtueentries.build }
++      @notes = Array.new(@@week) { Note.new }
++      @entries = @classregistration.virtueentries.where(:date => @@date)
++      if !@entries || @entries.nil? || @entries.empty?
++        @entries = Array.new(@@week)
++        @notes = Array.new(@@week)
++      end
++    end
++  end
+ 
+ 	def create
+-		params[:entries].each_value do |entry|
+-			cr = @classregistration.virtueentries.create(entry.except 'note')
+-			if entry[:note]
+-				cr.note = Note.new(:note=>entry['note'])
+-				cr.save!
+-			end
+-		end
++    temp = @classregistration.virtueentries.where(:date => @@date)
++    params["entries"].each do |k,v|
++        v.each do |key,value|
++          if key == "v_id"                                                   #if there is no such virtue with that v_id for that day, then create one
++            if temp.where(:v_id => value).blank?                             #http://stackoverflow.com/questions/18082778/rails-checking-if-a-record-exists-in-database
++              cr = @classregistration.virtueentries.create(v.except 'note')  #http://guides.rubyonrails.org/active_record_basics.html
++		          if v[:note]
++			          cr.note = Note.new()
++                cr.note.note = v[:note]
++			          cr.save!
++		          end
++              cr.date = @@date
++              cr.save!
++            else                                                            #else take that v_id and update the record
++              a = temp.where(:v_id => value)
++              a.update_all(v.except 'note')
++              break
++#a.violation_count = v[:violation_count]
++#a.note.note = v[:note]
++            end
++          end
++	      end
++    end
++    redirect_to :back
++  end
+ 
+-		redirect_to :back
+-	end
++  def edit
++    @entries = @classregistration.virtueentries
++  end
++
++  def update
++    @entries = @classregistration.virtueentries.find_by_date @date
++    @entries.update_attributes!(params[:virtueentries])
++  end
+ 
+ 	protected
+ 	def check_classroom_user
+@@ -33,7 +67,7 @@ class VirtueentriesController < ApplicationController
+ 		if !@classregistration
+ 			redirect_to :back
+ 		end
+-		@week = ((Date.today-@classroom.startdate)/7).to_i + 1
++		@@week = ((Date.today-@classroom.startdate)/7).to_i + 1
+ 	end
+-end
+ 
++end
+diff --git a/app/views/virtueentries/index.html.haml b/app/views/virtueentries/index.html.haml
+index 9ff084b..01f5ed9 100644
+--- a/app/views/virtueentries/index.html.haml
++++ b/app/views/virtueentries/index.html.haml
+@@ -18,4 +18,5 @@
+ 					-else
+ 						%td
+ 
+-=link_to 'Create Entry', new_classroom_virtueentry_path
++=link_to 'Create Entry',  editall_classroom_virtueentries_path(@classroom, Date.today)
++//=link_to 'Edit Entry', edit_classroom_virtueentry_path
+diff --git a/app/views/virtueentries/new.html.haml b/app/views/virtueentries/new.html.haml
+deleted file mode 100644
+index 7f76387..0000000
+--- a/app/views/virtueentries/new.html.haml
++++ /dev/null
+@@ -1,29 +0,0 @@
+-%h2 Enter violation
+-= calendar(:year=>2014, :month=>12) do |d|
+-	-link_to d.day, classroom_virtueentries_path(d)
+-
+-=form_tag classroom_virtueentries_path(@classroom), :method=>:post do
+-	%table.form
+-		%tbody
+-			%tr
+-			-@entries.each_with_index do |entry, index|
+-				=fields_for "entries[#{index}]", entry do |v|
+-					%tr
+-						%td
+-							= v.label :date, 'Date'
+-							= v.date_select :date
+-					%tr
+-						%td
+-							= v.label :v_id, 'Virtue id'
+-							= v.text_field :v_id
+-					%tr
+-						%td
+-							= v.label :violation_count, 'Violation count'
+-							= v.text_field :violation_count
+-					%tr
+-						%td
+-							= v.label :note, 'Note'
+-							= v.text_field :note
+-			%tr
+-				%td
+-					= submit_tag "Make Entry"
+diff --git a/config/routes.rb b/config/routes.rb
+index 8472a92..5983440 100644
+--- a/config/routes.rb
++++ b/config/routes.rb
+@@ -57,22 +57,24 @@ Virtues13::Application.routes.draw do
+   # match ':controller(/:action(/:id))(.:format)'
+ 	resources :users
+ 
+-	resources :classrooms do
+-		resources :virtueentries
+-		resources :statistics
+-		collection do
+-			post 'register'
+-		end
+-	end
++  resources :classrooms do
++    resources :virtueentries do
++        get 'editall/:date', :action => 'editall', :as => 'editall', :on  =>  :collection
++    end
++    resources :statistics
++    collection do
++      post 'register'
++    end
++  end
++
++  resources :sessions
++  root :to => redirect('/sessions')
++  get 'signout' => 'sessions#destroy'
+ 
+-	resources :sessions
+-	root :to => redirect('/sessions')
+-	get 'signout' => 'sessions#destroy'
+-	
+   resources :students do
+-		resources :entries
+-	end
+-	resources :logins
++    resources :entries
++  end
++  resources :logins
+   #root :to => redirect('/logins')
+-	get 'logout' => 'logins#destroy'
++  get 'logout' => 'logins#destroy'
+ end
+diff --git a/db/development.sqlite3 b/db/development.sqlite3
+index 9ee0faa..fdc892d 100644
+Binary files a/db/development.sqlite3 and b/db/development.sqlite3 differ

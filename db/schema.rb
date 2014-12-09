@@ -43,11 +43,6 @@ ActiveRecord::Schema.define(:version => 20141113193828) do
     t.boolean "v13"
   end
 
-  create_table "notes", :force => true do |t|
-    t.integer "virtueentry_id"
-    t.string  "note"
-  end
-
   create_table "students", :force => true do |t|
     t.string "name"
     t.string "email"
@@ -66,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20141113193828) do
     t.integer "v_id"
     t.date    "date"
     t.integer "violation_count"
+    t.string  "note"
   end
 
 end

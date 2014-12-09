@@ -5,6 +5,7 @@ class CreateVirtueentries < ActiveRecord::Migration
 			t.integer 'v_id'
 			t.date 'date'
 			t.integer 'violation_count'
+      t.string 'note'
 		end
   end
 

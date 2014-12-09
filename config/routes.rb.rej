@@ -1,0 +1,42 @@
+--- config/routes.rb
++++ config/routes.rb
+@@ -57,22 +57,24 @@
+   # match ':controller(/:action(/:id))(.:format)'
+ 	resources :users
+ 
+-	resources :classrooms do
+-		resources :virtueentries
+-		resources :statistics
+-		collection do
+-			post 'register'
+-		end
+-	end
++  resources :classrooms do
++    resources :virtueentries do
++        get 'editall/:date', :action => 'editall', :as => 'editall', :on  =>  :collection
++    end
++    resources :statistics
++    collection do
++      post 'register'
++    end
++  end
++
++  resources :sessions
++  root :to => redirect('/sessions')
++  get 'signout' => 'sessions#destroy'
+ 
+-	resources :sessions
+-	root :to => redirect('/sessions')
+-	get 'signout' => 'sessions#destroy'
+-	
+   resources :students do
+-		resources :entries
+-	end
+-	resources :logins
++    resources :entries
++  end
++  resources :logins
+   #root :to => redirect('/logins')
+-	get 'logout' => 'logins#destroy'
++  get 'logout' => 'logins#destroy'
+ end

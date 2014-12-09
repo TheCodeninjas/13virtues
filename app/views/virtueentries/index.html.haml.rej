@@ -1,0 +1,9 @@
+--- app/views/virtueentries/index.html.haml
++++ app/views/virtueentries/index.html.haml
+@@ -18,4 +18,5 @@
+ 					-else
+ 						%td
+ 
+-=link_to 'Create Entry', new_classroom_virtueentry_path
++=link_to 'Create Entry',  editall_classroom_virtueentries_path(@classroom, Date.today)
++//=link_to 'Edit Entry', edit_classroom_virtueentry_path

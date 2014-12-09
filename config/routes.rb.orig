@@ -59,7 +59,7 @@ Virtues13::Application.routes.draw do
 
 	resources :classrooms do
 		resources :virtueentries do
-      get 'editall/:date',  :action => 'editall',  :as =>  'editall', :on  =>  :collection
+      get 'editall/:date',  action => 'editall',  :as =>  'editall', :on  =>  collection
     end
 		resources :statistics
 		collection do
