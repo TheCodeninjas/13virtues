@@ -1,8 +1,7 @@
 %h2 Enter violation
 -$year=Date.today.year
 -$month=Date.today.month
-//-link_to "Next Month", Date.today.month + 1.month
-//-link_to "Next Year", Date.today.year + 1.year
+//-link_to "Next Month", $month
 = calendar(:year=>$year, :month=>$month) do |d|
   -link_to  d.day,  editall_classroom_virtueentries_path(@classroom, d)
 
@@ -17,6 +16,10 @@
                 %td
                   = v.label :v_id, 'Virtue ID: '
                   = v.text_field :v_id, :readonly => true
+              %tr
+                %td
+                  = v.label :date, 'Date'
+                  = v.text_field :date, :readonly=>true
               %tr
                 %td
                   = v.label :violation_count, 'Violation Count'

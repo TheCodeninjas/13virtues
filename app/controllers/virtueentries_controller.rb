@@ -7,52 +7,43 @@ class VirtueentriesController < ApplicationController
 
 	def editall
 #    flash[:notice] = "inside editall
-    @@date = params[:date].to_date
-    if Date.today>= @@date
-      @@week = (((params[:date].to_date)-@classroom.startdate).to_i)/7 + 1
-      @entries = Array.new(@@week) { @classregistration.virtueentries.build }
-      @entries = @classregistration.virtueentries.where(:date => @@date)
-#@notes = @entries.note
+    date = params[:date].to_date
+    if Date.today>= date && date>=@classroom.startdate
+      week = (((params[:date].to_date)-@classroom.startdate).to_i)/7 + 1
+      @entries = @classregistration.virtueentries.find_all_by_date date
+
       if !@entries || @entries.nil? || @entries.empty?
-        @entries = Array.new(@@week)  { @classregistration.virtueentries.build  }
-      end
-      $i=1
-      @entries.each do |entry|
-        if  $i<=@@week
-          entry[:v_id]=$i
-          $i=$i+1
+        @entries = Array.new(week)  { @classregistration.virtueentries.build  }
+        @entries.each { |en| en.date = Date.today }
+
+        $i=1
+        @entries.each do |entry|
+          if  $i<=week
+            entry[:v_id]=$i
+            $i=$i+1
+          end
         end
       end
     end
   end
 
 	def create
-    temp = @classregistration.virtueentries.where(:date => @@date)
-    params["entries"].each do |k,v|
-        v.each do |key,value|
-          if key == "v_id"                                                   #if there is no such virtue with that v_id for that day, then create one
-            if temp.where(:v_id => value).blank?                             #http://stackoverflow.com/questions/18082778/rails-checking-if-a-record-exists-in-database
-              cr = @classregistration.virtueentries.create(v)  #http://guides.rubyonrails.org/active_record_basics.html
-              cr.date = @@date
-              cr.save!
-            else                                                             #else take that v_id and update the record
-              a = temp.where(:v_id => value)
-              a.update_all(v)
-              break
-            end
-          end
-	      end
+    params["entries"].each do |k,entry|
+      logger.debug("mmmm")
+      logger.debug(entry)
+      prev = @classregistration.virtueentries.find_by_date_and_v_id(entry["date"], entry["v_id"])
+      if prev
+#prev.update(entry);
+        prev.violation_count = entry["violation_count"]
+        prev.note = entry["note"]
+        prev.save!
+      else
+        
+        cr = @classregistration.virtueentries.create(entry)  #http://guides.rubyonrails.org/active_record_basics.html
+        cr.save!
+      end
     end
     redirect_to :back
-  end
-
-  def edit
-    @entries = @classregistration.virtueentries
-  end
-
-  def update
-    @entries = @classregistration.virtueentries.find_by_date @date
-    @entries.update_attributes!(params[:virtueentries])
   end
 
   def destroy
@@ -73,7 +64,7 @@ class VirtueentriesController < ApplicationController
 		if !@classregistration
 			redirect_to :back
 		end
-		@@week = ((Date.today-@classroom.startdate)/7).to_i + 1
+		@week = ((Date.today-@classroom.startdate)/7).to_i + 1
   end
 
 end
