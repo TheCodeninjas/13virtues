@@ -1,0 +1,15 @@
+ 
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Committer: Ubuntu <ubuntu@ip-172-31-57-233.ec2.internal>
+#
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   controllers/classrooms_controller.rb
+#	modified:   controllers/virtueentries_controller.rb
+#	modified:   views/classrooms/show.html.haml
+#	modified:   ../db/development.sqlite3
+#
