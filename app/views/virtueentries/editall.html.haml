@@ -7,26 +7,24 @@
 
 =form_tag classroom_virtueentries_path, :method=>:post do
   %table.form
+    %thead
+      %tr
+        %th Virtue
+        %th
+        %th
+        %th.c Violation count
+        %th.c Note
     %tbody
       %tr
         -if @entries  ||  !@entries.nil?
           -@entries.each_with_index do |entry, index|
             =fields_for "entries[#{index}]", entry do |v|
               %tr
-                %td
-                  = v.label :v_id, 'Virtue ID: '
-                  = v.text_field :v_id, :readonly => true
-              %tr
-                %td
-                  = v.hidden_field :date, :readonly=>true
-              %tr
-                %td
-                  = v.label :violation_count, 'Violation Count'
-                  = v.text_field :violation_count
-              %tr
-                %td
-                  = v.label :note, 'Note'
-                  = v.text_field :note
-          %tr
-            %td
-              = submit_tag "Save Changes"
+                %td= v.label :name, Virtueentry.vdesc(entry.v_id)
+                %td= v.hidden_field :v_id, :readonly => true
+                %td= v.hidden_field :date, :readonly=>true
+                %td.c= v.text_field :violation_count, :size=>2
+                %td.c= v.text_field :note
+      %tr
+        %td
+          = submit_tag "Save"

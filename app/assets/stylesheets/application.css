@@ -27,6 +27,10 @@ table.form {
 	border-width: 1px;
 }
 
+.c {
+	text-align: center;
+}
+
 table.tb th {
 	border: 1px;
 	font-weight: bold;

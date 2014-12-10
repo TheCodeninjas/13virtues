@@ -22,7 +22,7 @@ class VirtueentriesController < ApplicationController
         @entries = Array.new(week)  { @classregistration.virtueentries.build  }
         @entries.each { |en| en.date = Date.today }
 
-        $i=1
+        $i=0
         @entries.each do |entry|
           if  $i<=week
             entry[:v_id]=$i
