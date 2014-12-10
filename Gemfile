@@ -1,6 +1,10 @@
 source 'https://rubygems.org'
 
+gem 'devise'
 gem 'rails', '3.2.16'
+gem 'omniauth'
+gem "omniauth-google-oauth2"
+gem 'hashie'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
