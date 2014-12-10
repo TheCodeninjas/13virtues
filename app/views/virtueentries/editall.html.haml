@@ -18,8 +18,8 @@
                   = v.text_field :v_id, :readonly => true
               %tr
                 %td
-                  = v.label :date, 'Date'
-                  = v.text_field :date, :readonly=>true
+                  //= v.label :date, 'Date'
+                  = v.hidden_field :date, :readonly=>true
               %tr
                 %td
                   = v.label :violation_count, 'Violation Count'
