@@ -7,10 +7,10 @@ class Virtueentry < ActiveRecord::Base
 							 "Industry", "Sincerity", "Justice", "Moderation", "Cleanliness",
 							 "Tranquility", "Chastity", "Humility"]
 
-		if id<0 || id>=virtues.size
+		if id<1 || id>virtues.size
 			return "NA"
 		else
-			return virtues[id]
+			return virtues[id-1]
 		end
 	end
 end

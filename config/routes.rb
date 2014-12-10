@@ -71,13 +71,6 @@ Virtues13::Application.routes.draw do
 	root :to => redirect('/sessions')
 	get 'signout' => 'sessions#destroy'
 	
-  resources :students do
-		resources :entries
-	end
-	resources :logins
-  #root :to => redirect('/logins')
-	get 'logout' => 'logins#destroy'
-
   # route to delete all entries for a user in a particular class
   delete '/classrooms/:classroom_id/virtueentries/' => "virtueentries#destroy", as: 'classroom_virtueentries'
 

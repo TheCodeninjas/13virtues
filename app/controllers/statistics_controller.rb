@@ -10,7 +10,7 @@ class StatisticsController < ApplicationController
 		@violations[0][0] = 'Week'
 
 		(1..week+1).to_a.each do|virt|
-			@violations[0][virt] = 'Virtue '+virt.to_s
+			@violations[0][virt] = Virtueentry.vdesc(virt)
 		end
 
 		(1..week+1).to_a.each do|wk|
@@ -33,7 +33,7 @@ class StatisticsController < ApplicationController
 					viols = @classregistration.virtueentries.find_all_by_v_id_and_date i-1, st_date..en_date
 				end
 				viols.each do |viol|
-					@violations[wk][i] += viol.violation_count
+					@violations[wk][i] += viol.violation_count if viol.violation_count
 				end
 			end
 		end

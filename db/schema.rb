@@ -25,29 +25,6 @@ ActiveRecord::Schema.define(:version => 20141113193828) do
     t.string "class_key"
   end
 
-  create_table "entries", :force => true do |t|
-    t.integer "student_id"
-    t.date    "date"
-    t.boolean "v1"
-    t.boolean "v2"
-    t.boolean "v3"
-    t.boolean "v4"
-    t.boolean "v5"
-    t.boolean "v6"
-    t.boolean "v7"
-    t.boolean "v8"
-    t.boolean "v9"
-    t.boolean "v10"
-    t.boolean "v11"
-    t.boolean "v12"
-    t.boolean "v13"
-  end
-
-  create_table "students", :force => true do |t|
-    t.string "name"
-    t.string "email"
-  end
-
   create_table "users", :force => true do |t|
     t.string  "first_name"
     t.string  "last_name"
