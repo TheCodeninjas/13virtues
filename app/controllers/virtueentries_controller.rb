@@ -13,14 +13,14 @@ class VirtueentriesController < ApplicationController
 
 	def editall
 #    flash[:notice] = "inside editall
-    date = params[:date].to_date
-    if Date.today>= date && date>=@classroom.startdate
+    @date = params[:date].to_date
+    if Date.today>= @date && @date>=@classroom.startdate
       week = (((params[:date].to_date)-@classroom.startdate).to_i)/7 + 1
-      @entries = @classregistration.virtueentries.find_all_by_date date
+      @entries = @classregistration.virtueentries.find_all_by_date @date
 
       if !@entries || @entries.nil? || @entries.empty?
         @entries = Array.new(week)  { @classregistration.virtueentries.build  }
-        @entries.each { |en| en.date = date }
+        @entries.each { |en| en.date = @date }
 
         $i=1
         @entries.each do |entry|

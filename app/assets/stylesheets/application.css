@@ -41,3 +41,8 @@ table.tb th {
 table.tb tr:nth-child(even){
 	background: lightblue;
 }
+
+#cal{
+  width:205px;
+  height:230px;
+}

@@ -2,8 +2,18 @@
 -$year=Date.today.year
 -$month=Date.today.month
 //-link_to "Next Month", $month
-= calendar(:year=>$year, :month=>$month) do |d|
-  -link_to  d.day,  editall_classroom_virtueentries_path(@classroom, d)
+//= calendar(:year=>$year, :month=>$month) do |d|
+//  -link_to  d.day,  editall_classroom_virtueentries_path(@classroom, d)
+
+:javascript
+  var classroom = #{@classroom.id};
+
+%div{:id=>"cal"}
+- content_for :javascripts do
+  = javascript_include_tag 'calendar'
+
+%p2=@date
+%p2=@date.day
 
 =form_tag classroom_virtueentries_path, :method=>:post do
   %table.form
