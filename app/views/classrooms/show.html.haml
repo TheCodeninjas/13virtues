@@ -19,6 +19,6 @@
 					-elsif member.classregistration_type == Classregistration.student
 						%td Student
 					-else
-						%td Student - pending approval
+						%td= link_to "Click to approve", edit_classroom_path(:param1 => @classroom, :param2 => member.user)
 -else
 	=link_to 'Entry', classroom_virtueentries_path(@classroom)

@@ -2,7 +2,13 @@ class VirtueentriesController < ApplicationController
 	before_filter :check_classroom_user
 
 	def index
-		@entries=@classregistration.virtueentries.order(:date, :v_id)
+    @classregistration = Classregistration.find_by_user_id_and_classroom_id @current_user, @classroom
+		if @classregistration.classregistration_type == Classregistration.student
+      @entries=@classregistration.virtueentries.order(:date, :v_id)
+    else
+      flash[:msg] = "Student not yet approved"
+      redirect_to :back
+    end
 	end
 
 	def editall
