@@ -1,11 +1,11 @@
-%h2 Welcome to Benjamin Franklin's Virtues' tracker
+%h3 Welcome to Benjamin Franklin's Virtues' tracker
 
 %table.login
 	%tbody
 		%tr
 			%td
 				=form_tag sessions_path, :method => :post do
-					%table.form
+					%table
 						%tbody
 							%tr
 								%td
@@ -14,12 +14,12 @@
 								%td
 									= text_field :session, :id
 							%tr
-								%td
+								%td.r
 									= submit_tag 'Login'
 			%td
 				=form_tag users_path, :method => :post do
-					%table.form
-						%tbody
+					%table
+						%tbody.r
 							%tr
 								%td
 									= label :user, :first_name, 'First Name'

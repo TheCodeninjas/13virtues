@@ -33,6 +33,13 @@ table.entriesparent td{
 
 .entries{
 	font: 18px serif;
+	border: 2px solid;
+	border-radius: 25px;
+	padding: 20px;
+	background-color: #ede8dc;
+}
+
+.entries th{
 }
 
 table.tb {
@@ -172,6 +179,12 @@ table.tb th {
 
 table.login {
 	width: 100%;
+}
+
+table.login table{
+	border-radius: 25px;
+	padding: 20px;
+	background-color: #ede8dc;
 }
 
 table.login td{
