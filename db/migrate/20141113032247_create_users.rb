@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
 			t.string 'email'
 			t.string 'uid'
 			t.integer 'user_type'
+			t.string 'password'
 		end
   end
 

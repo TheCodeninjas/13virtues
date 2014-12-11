@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20141113193828) do
     t.string  "email"
     t.string  "uid"
     t.integer "user_type"
+    t.string  "password"
   end
 
   create_table "virtueentries", :force => true do |t|

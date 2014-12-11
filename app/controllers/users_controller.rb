@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 		end
 		@user = User.new params[:user]
 		@user.user_type = User.non_admin_type
+		@user.password = params[:password]
 		@user.save!
 
 		flash[:msg] = "Your account is created!"

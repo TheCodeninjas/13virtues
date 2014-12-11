@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 	has_many :classrooms, :through => :classregistrations
 
 	attr_protected :user_type
-	attr_accessible :first_name, :last_name, :email, :uid
+	attr_accessible :first_name, :last_name, :email, :uid, :password
 
 	def can_create_class?
 		return true if user_type == User.admin_type

@@ -10,8 +10,12 @@ class SessionsController < ApplicationController
 		@user = User.find_by_email(@id)
 		unless @user then
 			flash[:msg] = "Authentication Failure!"
-			redirect_to sessions_path
+			redirect_to sessions_path and return
 		else
+			if @user.password!=params[:password]
+				flash[:msg] = "Authentication Failure!"
+				redirect_to sessions_path and return
+			end
 			session[:user] = @user.id
 			@current_user = @user
 			redirect_to user_path @current_user
@@ -20,6 +24,7 @@ class SessionsController < ApplicationController
 
 	def destroy
 		session[:user] = nil
+		params[:session] = nil
 		flash[:msg] = "You're signed out"
 		redirect_to sessions_path
 	end

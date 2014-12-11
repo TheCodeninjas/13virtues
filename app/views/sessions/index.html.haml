@@ -10,9 +10,11 @@
 							%tr
 								%td
 									= label :session, :id, 'Login ID (email id)'
+									= text_field :session, :id
 							%tr
 								%td
-									= text_field :session, :id
+									= label :session, :password, 'Password'
+									= password_field_tag :password, :user, :value=>nil
 							%tr
 								%td.r
 									= submit_tag 'Login'
@@ -32,6 +34,10 @@
 								%td
 									= label :user, :email, 'Email'
 									= text_field :user, :email
+							%tr
+								%td
+									= label :user, :password, 'Password'
+									= password_field_tag :password, :user, :value=>nil
 							%tr
 								%td
 									= submit_tag 'Register'
