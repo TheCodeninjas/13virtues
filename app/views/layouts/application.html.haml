@@ -29,6 +29,7 @@
 				%li
 					-if @classroom
 						=@classroom.name
+						=image_tag("arrow-down.png")
 						%ul#clsselect
 							- @current_user.classrooms.each do |cls|
 								%li
