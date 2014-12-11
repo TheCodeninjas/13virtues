@@ -23,5 +23,8 @@ class ApplicationController < ActionController::Base
 
 		classes = @current_user.classrooms
 		@classroom = classes[0] if classes
+		if @classroom
+			@classregistration = Classregistration.find_by_user_id_and_classroom_id @current_user, @classroom
+		end
 	end
 end

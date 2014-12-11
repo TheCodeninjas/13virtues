@@ -5,7 +5,7 @@ class VirtueentriesController < ApplicationController
 		if @classregistration.classregistration_type == Classregistration.student
       @entries=@classregistration.virtueentries.order(:date, :v_id)
     else
-      flash[:msg] = "Student not yet approved"
+      flash[:msg] = "You're not yet approved!"
       redirect_to :back
     end
 	end

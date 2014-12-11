@@ -46,7 +46,7 @@ class StatisticsController < ApplicationController
 		end
 
 		@classregistration = Classregistration.find_by_user_id_and_classroom_id @current_user, @classroom
-		if !@classregistration
+		if !@classregistration || @classregistration.classregistration_type == Classregistration.student_pending_approval
 			redirect_to :back
 		end
 	end

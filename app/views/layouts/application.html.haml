@@ -37,10 +37,10 @@
 								=link_to '+Class', new_classroom_path
 					-else
 						=link_to '+Class', new_classroom_path
-				-if @classroom
+				-if @classroom && @classregistration.classregistration_type != Classregistration.student_pending_approval
 					%li
 						=link_to 'Statistics', classroom_statistics_path(@classroom)
-				-if @classroom && !@current_user.can_create_class?
+				-if @classroom && @classregistration.classregistration_type == Classregistration.student
 					%li
 						=link_to 'All Entries', classroom_virtueentries_path(@classroom)
 
