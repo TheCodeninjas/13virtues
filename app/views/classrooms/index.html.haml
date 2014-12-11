@@ -11,15 +11,3 @@
 				%tr
 					%td= link_to class_room.name, classroom_path(class_room)
 					%td=class_room.startdate
-
-%h3 Register for Class
-=form_tag register_classrooms_path, :method=>:post do
-	%table.form
-		%tbody
-			%tr
-				%td
-					= label :classroom, :name, 'Class Name'
-					= text_field :classroom, :name
-			%tr
-				%td
-					= submit_tag "Register for Class"

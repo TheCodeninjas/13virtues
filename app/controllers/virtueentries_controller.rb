@@ -2,7 +2,6 @@ class VirtueentriesController < ApplicationController
 	before_filter :check_classroom_user
 
 	def index
-    @classregistration = Classregistration.find_by_user_id_and_classroom_id @current_user, @classroom
 		if @classregistration.classregistration_type == Classregistration.student
       @entries=@classregistration.virtueentries.order(:date, :v_id)
     else

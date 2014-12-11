@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
 	skip_before_filter :set_current_user, :only=>[:create]
 
+	def index
+	end
+
 	def show
-		@can_create_class = @current_user.can_create_class?
+		#@can_create_class = @current_user.can_create_class?
+		redirect_to classrooms_path
 	end
 
 	def create

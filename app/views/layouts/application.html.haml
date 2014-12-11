@@ -24,14 +24,11 @@
 							//=link_to 'Logout ', '/logout'
 							=link_to 'Sign out', '/signout'
 
-		- if flash[:msg]
-			=flash[:msg]
-
 		-if @current_user
-			%ul#topbar
+			%ul.topbar
 				%li
 					-if @classroom
-						=link_to @classroom.name, classroom_path(@classroom)
+						=@classroom.name
 						%ul#clsselect
 							- @current_user.classrooms.each do |cls|
 								%li
@@ -43,10 +40,14 @@
 				-if @classroom
 					%li
 						=link_to 'Statistics', classroom_statistics_path(@classroom)
+				-if @classroom && !@current_user.can_create_class?
+					%li
+						=link_to 'All Entries', classroom_virtueentries_path(@classroom)
 
-			%br
-			%br
-			%br
+		%br
+		%br
+		- if flash[:msg]
+			=flash[:msg]
 
 		#main
 			= yield

@@ -1,6 +1,15 @@
 class ClassroomsController < ApplicationController
 	def index
 		@class_rooms = @current_user.classrooms
+		if @class_rooms && @class_rooms.size>0
+			redirect_to classroom_path @class_rooms[0]
+		else
+			flash[:msg] = "You're not registered to any classes!"
+			redirect_to new_classroom_path
+		end
+	end
+
+	def new
 	end
 
 	def create
@@ -31,16 +40,15 @@ class ClassroomsController < ApplicationController
 			redirect_to :back and return
 		end
 
-		#@classregistration = Classregistration.find_by_user_id_and_classroom_id @current_user, @classroom
 		@classregistration = @current_user.classregistrations.find_by_classroom_id @classroom
-		if @classregistration.classregistration_type == Classregistration.admin_type
+		regtype = @classregistration.classregistration_type
+		if regtype == Classregistration.admin_type
 			@classmembers = @classroom.classregistrations
+		elsif regtype == Classregistration.student
+			redirect_to editall_classroom_virtueentries_path(@classroom, Date.today)
 		else
-			;#redirect_to classroom_virtueentries_path @classroom
-
-		#@week = ((Date.today-@classroom.startdate)/7).to_i + 1
-		#if @week < 1 || @week > 13
-		#else
+			flash[:msg] = "Your instructor hasn't approved you to this class yet"
+			redirect_to new_classroom_path
 		end
 	end
 
@@ -55,7 +63,7 @@ class ClassroomsController < ApplicationController
 			@current_user.classregistrations<<registration
 			class_room.classregistrations<<registration
 
-			flash[:msg] = "Registered to class "+class_room.name
+			flash[:msg] = "Registered to class. Approval of instructor pending"+class_room.name
 		end
 		redirect_to :back
 	end
@@ -79,5 +87,4 @@ class ClassroomsController < ApplicationController
     end
     redirect_to :back
   end
-
 end
