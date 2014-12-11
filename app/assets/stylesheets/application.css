@@ -120,6 +120,18 @@ ul.topbar li ul {
   -transition: opacity 0.2s;
 }
 
+ul.topbar li:nth-child(1){
+	background:#eee1c6;
+}
+
+ul.topbar li:hover:nth-child(1){
+	background:#666;
+}
+
+ul.topbar li ul li:nth-child(1){
+	background: #555;
+}
+
 ul.topbar li ul li { 
   background: #555; 
   display: block; 
