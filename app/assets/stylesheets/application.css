@@ -23,6 +23,10 @@ table#header a{
 	text-decoration:none;
 }
 
+table.entriesparent td{
+	vertical-align: top;
+}
+
 table.tb {
 	margin: 10px;
 	text-align: center;
@@ -151,7 +155,7 @@ table.login {
 }
 
 table.login td{
-	vertical-align: top;
+	v.ertical-align: top;
 }
 
 table.tb tr:nth-child(even){
@@ -169,4 +173,9 @@ table.tb tr:nth-child(even){
 .csel{
 	width:100px;
 	text-align: center;
+}
+
+#chart_div{
+  width:90%;
+  height:500px;
 }

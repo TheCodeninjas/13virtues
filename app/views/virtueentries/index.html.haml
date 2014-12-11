@@ -1,4 +1,7 @@
-%h2 Entries
+%h3
+	Entries for
+	=link_to @classroom.name, classroom_path(@classroom)
+
 %table.tb
 	%thead
 		%tr
@@ -15,7 +18,6 @@
 					%td= entry.violation_count
 					%td= entry.note
 
-=link_to 'Create Entry', editall_classroom_virtueentries_path(@classroom, Date.today)
 :plain
 	&nbsp &nbsp &nbsp
 =link_to 'Delete all entries', classroom_virtueentries_path(@classroom), :method => :delete, data: { confirm: 'This will delete all your entries for this class. Do you want to continue?' }

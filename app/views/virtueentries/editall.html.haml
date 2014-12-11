@@ -1,4 +1,6 @@
-%h3.c Enter violation
+%h3
+  Entry for
+  =@date.to_s
 -$year=Date.today.year
 -$month=Date.today.month
 //-link_to "Next Month", $month
@@ -8,19 +10,18 @@
 :javascript
   var classroom = #{@classroom.id};
 
-%table
+%table.entriesparent
   %tbody
     %tr
-      %td
+      %td.cal
         %div{:id=>"cal"}
         - content_for :javascripts do
           = javascript_include_tag 'calendar'
 
       %td
-        %p2="Entry for "+ @date.to_s
 
         =form_tag classroom_virtueentries_path, :method=>:post do
-          %table.form
+          %table.form.entries
             %thead
               %tr
                 %th
@@ -41,4 +42,8 @@
                         %td.c= v.text_field :note
               %tr
                 %td
+                %td
+                %td
+                %td
+                %td.r
                   = submit_tag "Save"

@@ -63,7 +63,7 @@ class ClassroomsController < ApplicationController
 			@current_user.classregistrations<<registration
 			class_room.classregistrations<<registration
 
-			flash[:msg] = "Registered to class. Approval of instructor pending"+class_room.name
+			flash[:msg] = "Registered to class "+class_room.name+". Approval of instructor pending"
 		end
 		redirect_to :back
 	end
