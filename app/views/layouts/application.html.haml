@@ -14,18 +14,39 @@
 				%tr
 					%td
 						%h2
-							=link_to '13 Virtues Tracker', root_path
+							=link_to 'Virtues Tracker', root_path
 					- if @current_user
 						%td
 							Welcome
 							//= @current_user.name+'!!'+' ('+@current_user.email+')'
-							= @current_user.first_name+'!!'+' ('+@current_user.email+')'
-						%td
+							= @current_user.first_name+'!!'
+						%td.r
 							//=link_to 'Logout ', '/logout'
 							=link_to 'Sign out', '/signout'
 
 		- if flash[:msg]
 			=flash[:msg]
+
+		-if @current_user
+			%ul#topbar
+				%li
+					-if @classroom
+						=link_to @classroom.name, classroom_path(@classroom)
+						%ul#clsselect
+							- @current_user.classrooms.each do |cls|
+								%li
+									=link_to cls.name, classroom_path(cls)
+							%li
+								=link_to '+Class', new_classroom_path
+					-else
+						=link_to '+Class', new_classroom_path
+				-if @classroom
+					%li
+						=link_to 'Statistics', classroom_statistics_path(@classroom)
+
+			%br
+			%br
+			%br
 
 		#main
 			= yield

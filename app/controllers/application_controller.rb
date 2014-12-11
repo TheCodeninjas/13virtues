@@ -20,5 +20,8 @@ class ApplicationController < ActionController::Base
 			flash[:msg] = "Wrong credentials"
 			redirect_to root_path
 		end
+
+		classes = @current_user.classrooms
+		@classroom = classes[0] if classes
 	end
 end

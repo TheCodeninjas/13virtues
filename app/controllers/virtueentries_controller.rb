@@ -24,10 +24,8 @@ class VirtueentriesController < ApplicationController
 
         $i=1
         @entries.each do |entry|
-          if  $i<=week
-            entry[:v_id]=$i
-            $i=$i+1
-          end
+          entry[:v_id]=$i
+          $i=$i+1
         end
       end
     end
@@ -35,8 +33,6 @@ class VirtueentriesController < ApplicationController
 
 	def create
     params["entries"].each do |k,entry|
-      logger.debug("mmmm")
-      logger.debug(entry)
       prev = @classregistration.virtueentries.find_by_date_and_v_id(entry["date"], entry["v_id"])
       if prev
 #prev.update(entry);
@@ -55,7 +51,6 @@ class VirtueentriesController < ApplicationController
   def destroy
     @entries_to_be_del = @classregistration.virtueentries
     @entries_to_be_del.each {|entry| entry.destroy}
-    logger.warn "Entries Deleted!"
     redirect_to classroom_path(@classroom)
   end
 
@@ -72,6 +67,4 @@ class VirtueentriesController < ApplicationController
 		end
 		@week = ((Date.today-@classroom.startdate)/7).to_i + 1
   end
-
 end
-

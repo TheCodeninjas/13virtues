@@ -4,9 +4,8 @@ window.onload = function(){
 			isStripped:true,
 			target:"cal",
 			limitToToday:true,
-			imgPath:"/img/",
 			cellColorScheme:"beige",
-			/*selectedDate:{
+			/*selectedDate{
 				day:5,
 				month:12,
 				year:2014,

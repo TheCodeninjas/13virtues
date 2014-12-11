@@ -5,7 +5,6 @@ class StatisticsController < ApplicationController
 		week = (Date.today-@classroom.startdate)/7
 		week = week.to_i
 
-#		@stats = [['year', 'sales', 'expenses'], ['2004', 1000, 400], ['2005', 1170, 460]]
 		@violations = Array.new(week+2) { Array.new(week+2, 0) }#[week][13]
 		@violations[0][0] = 'Week'
 
@@ -28,9 +27,9 @@ class StatisticsController < ApplicationController
 
 			(1..week+1).to_a.each do|i|
 				if @classregistration.classregistration_type == Classregistration.admin_type
-					viols = @classroom.virtueentries.find_all_by_v_id_and_date i-1, st_date..en_date
+					viols = @classroom.virtueentries.find_all_by_v_id_and_date i, st_date..en_date
 				else
-					viols = @classregistration.virtueentries.find_all_by_v_id_and_date i-1, st_date..en_date
+					viols = @classregistration.virtueentries.find_all_by_v_id_and_date i, st_date..en_date
 				end
 				viols.each do |viol|
 					@violations[wk][i] += viol.violation_count if viol.violation_count

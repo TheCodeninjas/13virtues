@@ -1,4 +1,4 @@
-%h2 Enter violation
+%h3.c Enter violation
 -$year=Date.today.year
 -$month=Date.today.month
 //-link_to "Next Month", $month
@@ -8,33 +8,37 @@
 :javascript
   var classroom = #{@classroom.id};
 
-%div{:id=>"cal"}
-- content_for :javascripts do
-  = javascript_include_tag 'calendar'
+%table
+  %tbody
+    %tr
+      %td
+        %div{:id=>"cal"}
+        - content_for :javascripts do
+          = javascript_include_tag 'calendar'
 
-%p2=@date
-%p2=@date.day
+      %td
+        %p2="Entry for "+ @date.to_s
 
-=form_tag classroom_virtueentries_path, :method=>:post do
-  %table.form
-    %thead
-      %tr
-        %th Virtue
-        %th
-        %th
-        %th.c Violation count
-        %th.c Note
-    %tbody
-      %tr
-        -if @entries  ||  !@entries.nil?
-          -@entries.each_with_index do |entry, index|
-            =fields_for "entries[#{index}]", entry do |v|
+        =form_tag classroom_virtueentries_path, :method=>:post do
+          %table.form
+            %thead
               %tr
-                %td= v.label :name, Virtueentry.vdesc(entry.v_id)
-                %td= v.hidden_field :v_id, :readonly => true
-                %td= v.hidden_field :date, :readonly=>true
-                %td.c= v.text_field :violation_count, :size=>2
-                %td.c= v.text_field :note
-      %tr
-        %td
-          = submit_tag "Save"
+                %th
+                %th
+                %th
+                %th.c Violation count
+                %th.c Notes
+            %tbody
+              %tr
+                -if @entries  ||  !@entries.nil?
+                  -@entries.each_with_index do |entry, index|
+                    =fields_for "entries[#{index}]", entry do |v|
+                      %tr
+                        %td= v.label :name, Virtueentry.vdesc(entry.v_id)
+                        %td= v.hidden_field :v_id, :readonly => true
+                        %td= v.hidden_field :date, :readonly=>true
+                        %td.c= v.text_field :violation_count, :size=>2
+                        %td.c= v.text_field :note
+              %tr
+                %td
+                  = submit_tag "Save"

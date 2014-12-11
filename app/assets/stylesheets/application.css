@@ -13,13 +13,23 @@
  */
 
 table#header {
-	width: 90%;
-	background-color: lightblue;
+	width: 100%;
+	background-color: #500000;
+	color: #8f8f8c;
+}
+
+table#header a{
+	color: #e7ded0;
+	text-decoration:none;
 }
 
 table.tb {
 	margin: 10px;
 	text-align: center;
+}
+
+a{
+	color: #1d3362;
 }
 
 table.form {
@@ -31,18 +41,126 @@ table.form {
 	text-align: center;
 }
 
+.r{
+	text-align: right;
+}
+
+table#topbar td{
+	padding:2px;
+}
+
+/*from http://cssdeck.com/labs/another-simple-css3-dropdown-menu*/
+ul#topbar {
+  text-align: left;
+  display: inline;
+  margin: 0;
+  padding: 15px 4px 17px 0;
+  list-style: none;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+
+ul#topbar li {
+  font: bold 12px/18px sans-serif;
+  display: inline-block;
+  margin-right: -4px;
+  position: relative;
+  padding: 15px 20px;
+  background: #fff;
+	color: #6c491d;
+  cursor: pointer;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+ul#topbar li a{
+	color: #6c491d;
+	text-decoration:none;
+}
+
+body {
+	color: #6c491d;
+}
+
+ul#topbar li:hover {
+  background: #555;
+  color: #e7ded0;
+}
+
+ul#topbar li ul {
+  padding: 0;
+  position: absolute;
+  top: 48px;
+  left: 0;
+  width: 150px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transiton: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -ms-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  -transition: opacity 0.2s;
+}
+
+ul#topbar li ul li { 
+  background: #555; 
+  display: block; 
+  color: #fff;
+  text-shadow: 0 -1px 0 #000;
+}
+
+ul#topbar li ul li:hover {
+	background: #666;
+}
+
+ul#topbar li:hover a{
+	color: #e7ded0;
+	text-decoration:none;
+}
+
+ul#topbar li:hover ul {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+/*till here*/
+
 table.tb th {
 	border: 1px;
 	font-weight: bold;
-	background-color: steelblue;
+	background-color: #8f8f8c;
 	color: white;
 }
 
+table.login {
+	width: 100%;
+}
+
+table.login td{
+	vertical-align: top;
+}
+
 table.tb tr:nth-child(even){
-	background: lightblue;
+	background: #e7ded0;
 }
 
 #cal{
   width:205px;
-  height:230px;
+	height:210px;
+  height:210px;
+	border-style: dashed;
+	border-width: 1px;
+}
+
+.csel{
+	width:100px;
+	text-align: center;
 }
