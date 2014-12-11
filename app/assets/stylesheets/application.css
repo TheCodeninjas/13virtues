@@ -23,8 +23,16 @@ table#header a{
 	text-decoration:none;
 }
 
+table.entriesparent {
+	width: 100%;
+}
+
 table.entriesparent td{
 	vertical-align: top;
+}
+
+.entries{
+	font: 18px serif;
 }
 
 table.tb {
