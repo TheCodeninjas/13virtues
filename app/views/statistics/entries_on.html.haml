@@ -1,0 +1,10 @@
+%h3
+  Statistics for when entries were made for
+  =link_to @classroom.name, classroom_path(@classroom)
+
+:javascript
+  var stats = #{@entries_on.to_json}
+
+%div#chart_div
+- content_for :javascripts do
+  = javascript_include_tag 'statistics'

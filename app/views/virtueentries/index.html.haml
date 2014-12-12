@@ -9,6 +9,7 @@
 			%th Date
 			%th Violations
 			%th Notes
+			%th First entry Date
 	%tbody
 		-if @entries
 			-@entries.each do |entry|
@@ -17,6 +18,7 @@
 					%td= entry.date
 					%td= entry.violation_count
 					%td= entry.note
+					%td= entry.entryon
 
 :plain
 	&nbsp &nbsp &nbsp

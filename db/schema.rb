@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20141113193828) do
     t.date    "date"
     t.integer "violation_count"
     t.string  "note"
+    t.date    "entryon"
   end
 
 end

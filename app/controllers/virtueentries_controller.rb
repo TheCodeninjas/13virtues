@@ -34,13 +34,12 @@ class VirtueentriesController < ApplicationController
     params["entries"].each do |k,entry|
       prev = @classregistration.virtueentries.find_by_date_and_v_id(entry["date"], entry["v_id"])
       if prev
-#prev.update(entry);
         prev.violation_count = entry["violation_count"]
         prev.note = entry["note"]
         prev.save!
       else
-        
         cr = @classregistration.virtueentries.create(entry)  #http://guides.rubyonrails.org/active_record_basics.html
+				cr.entryon = Date.today
         cr.save!
       end
     end

@@ -1,6 +1,7 @@
 class Virtueentry < ActiveRecord::Base
 	belongs_to :classregistration
 	attr_accessible :v_id, :date, :violation_count, :note
+	attr_protected :entryon
 
 	def self.vdesc(id)
 		virtues = ["Temperance", "Silence", "Order", "Resolution", "Frugality",
