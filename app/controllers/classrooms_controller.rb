@@ -74,13 +74,13 @@ class ClassroomsController < ApplicationController
       flash[:msg] = "No such classroom exists"
     else
       flash[:msg] = "Editing for approval "+params[:id]
-      @current_user = User.find params[:param2]
-      if @current_user
-        @classregistration = @current_user.classregistrations.find_by_classroom_id @classroom
+      current_user = User.find params[:param2]
+      if current_user
+        @classregistration = current_user.classregistrations.find_by_classroom_id @classroom
         @classregistration.classregistration_type = Classregistration.student
         @classregistration.save!
 
-        flash[:msg] = "Student "+@current_user.first_name+" approved for this class"
+        flash[:msg] = "Student "+current_user.first_name+" approved for this class"
       else
         flash[:msg] = "Student doesn't exist"
       end

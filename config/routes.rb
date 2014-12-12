@@ -62,7 +62,7 @@ Virtues13::Application.routes.draw do
       get 'editall/:date',  :action => 'editall',  :as =>  'editall', :on  =>  :collection
     end
 		resources :statistics do
-			get 'entries_on', :action=>'entries_on', :as=>'entries_on', :on =>:collection
+			get 'entries_on/:user', :action=>'entries_on', :as=>'entries_on', :on =>:collection
 		end
 		collection do
 			post 'register'

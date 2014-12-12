@@ -31,39 +31,36 @@ class StatisticsController < ApplicationController
 	end
 
 	def entries_on
-		#week = (Date.today-@classroom.startdate)/7
-		#week = week.to_i
+		user = User.find_by_id params[:user]
+		redirect_to :back and return if !user
+
+		if user!=@current_user
+			if @classregistration.classregistration_type!=Classregistration.admin_type
+				redirect_to :back and return
+			end
+		else
+			user = @current_user
+		end
+
+		@ureg = Classregistration.find_by_user_id_and_classroom_id user, @classroom
+
+		if !@ureg || @ureg.classregistration_type == Classregistration.student_pending_approval
+			redirect_to :back and return
+		end
+
 		days = (Date.today-@classroom.startdate).to_i
-
-		#@entries_on = Array.new(week+2) { Array.new(3, 0) }
-		#@entries_on[0][0] = 'Week'
-		#@entries_on[0][1] = 'Maximum entries'
-		#@entries_on[0][2] = 'Actual entries'
-
-		#(1..week+1).to_a.each do|wk|
-		#	@entries_on[wk][0] = 'Week '+wk.to_s
-		#end
-
-		#(1..week+1).to_a.each do|wk|
-		#	st_date = @classroom.startdate+(wk-1)*7
-		#	en_date = st_date+6
-
-		#	@entries_on[wk][1] = 7*wk*wk
-		#	ents = @classroom.virtueentries.find_all_by_entryon st_date..en_date
-		#	@entries_on[wk][2] = ents.count
-		#end
 
 		@entries_on = Array.new(days+2) { Array.new(3, 0) }
 		@entries_on[0][0] = 'Day'
-		@entries_on[0][1] = 'Maximum entries'
-		@entries_on[0][2] = 'Actual entries'
+		@entries_on[0][1] = 'Entries'
+		@entries_on[0][2] = 'Entries made on day'
 
 		(0..days).to_a.each do|i|
 			@entries_on[i+1][0] = (i+1).to_s
 			day = @classroom.startdate+i
 			week = (i/7)+1
 			@entries_on[i+1][1] = week
-			ents = @classroom.virtueentries.find_all_by_entryon day
+			ents = @ureg.virtueentries.find_all_by_entryon day
 			@entries_on[i+1][2] = ents.count
 		end
 	end

@@ -10,7 +10,7 @@
 		%tbody
 			-@classmembers.each do |member|
 				%tr
-					%td= member.user.first_name
+					%td= link_to member.user.first_name, entries_on_classroom_statistics_path(@classroom, member.user)#:param1=>@classroom, :param2=>member.user)
 					%td= member.user.last_name
 					%td= member.user.email
 					-if member.classregistration_type == Classregistration.admin_type

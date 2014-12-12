@@ -139,7 +139,7 @@ ul.topbar li:nth-child(1){
 	background:#eee1c6;
 }
 
-ul.topbar li:hover:nth-child(1){
+ul.topbar li:hover{
 	background:#666;
 }
 
