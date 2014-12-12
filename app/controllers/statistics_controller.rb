@@ -6,14 +6,14 @@ class StatisticsController < ApplicationController
 		week = days/7
 
 		@violations = Array.new(days+2) { Array.new(week+2, 0) }
-		@violations[0][0] = 'Week'
+		@violations[0][0] = 'Day'
 
 		(1..week+1).to_a.each do|virt|
 			@violations[0][virt] = Virtueentry.vdesc(virt)
 		end
 
 		(0..days).to_a.each do|d|
-			@violations[d+1][0] = (d+1).to_s
+			@violations[d+1][0] = "Day "+(d+1).to_s
 			day = @classroom.startdate+d
 
 			(1..week+1).to_a.each do|i|
@@ -52,11 +52,11 @@ class StatisticsController < ApplicationController
 
 		@entries_on = Array.new(days+2) { Array.new(3, 0) }
 		@entries_on[0][0] = 'Day'
-		@entries_on[0][1] = 'Entries'
+		@entries_on[0][1] = 'Entries to be made for day'
 		@entries_on[0][2] = 'Entries made on day'
 
 		(0..days).to_a.each do|i|
-			@entries_on[i+1][0] = (i+1).to_s
+			@entries_on[i+1][0] = "Day "+(i+1).to_s
 			day = @classroom.startdate+i
 			week = (i/7)+1
 			@entries_on[i+1][1] = week

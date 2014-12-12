@@ -4,6 +4,7 @@
 
 :javascript
   var stats = #{@violations.to_json};
+  var tit = 'Progress'
 
 %div#chart_div
 - content_for :javascripts do

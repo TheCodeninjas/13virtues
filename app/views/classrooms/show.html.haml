@@ -1,5 +1,11 @@
 -if @classmembers
-	%h2 Class members
+	%h3
+		Class
+		=link_to @classroom.name, classroom_path(@classroom)
+	%p
+		Start date
+		= @classroom.startdate
+	%h3 Class members
 	%table.tb
 		%thead
 			%tr

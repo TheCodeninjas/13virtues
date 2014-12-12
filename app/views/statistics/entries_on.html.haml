@@ -4,6 +4,7 @@
 
 :javascript
   var stats = #{@entries_on.to_json}
+  var tit = 'Entry frequency'
 
 %div#chart_div
 - content_for :javascripts do

@@ -4,7 +4,7 @@ function drawChart() {
 	var data = google.visualization.arrayToDataTable(stats);
 
 	var options = {
-		title: 'Violations'
+		title: tit
 	};
 
 	var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
