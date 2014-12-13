@@ -188,7 +188,7 @@ table.login table{
 }
 
 table.login td{
-	v.ertical-align: top;
+	vertical-align: top;
 }
 
 table.tb tr:nth-child(even){

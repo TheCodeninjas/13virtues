@@ -3,6 +3,12 @@ class StatisticsController < ApplicationController
 
 	def index
 		days = (Date.today-@classroom.startdate).to_i
+
+		if days<0
+			flash[:msg] = "Class hasn't started yet!"
+			redirect_to :back and return
+		end
+
 		week = days/7
 
 		@violations = Array.new(days+2) { Array.new(week+2, 0) }
@@ -49,6 +55,10 @@ class StatisticsController < ApplicationController
 		end
 
 		days = (Date.today-@classroom.startdate).to_i
+		if days<0
+			flash[:msg] = "Class hasn't started yet!"
+			redirect_to :back and return
+		end
 
 		@entries_on = Array.new(days+2) { Array.new(3, 0) }
 		@entries_on[0][0] = 'Day'
