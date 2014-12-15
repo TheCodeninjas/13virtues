@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141113193828) do
+ActiveRecord::Schema.define(:version => 20141215061015) do
 
   create_table "classregistrations", :force => true do |t|
     t.integer "user_id"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(:version => 20141113193828) do
     t.string  "uid"
     t.integer "user_type"
     t.string  "password"
+    t.string  "salt"
+    t.string  "encrypted_password"
   end
 
   create_table "virtueentries", :force => true do |t|
