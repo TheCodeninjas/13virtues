@@ -1,26 +1,25 @@
 class UsersController < ApplicationController
-	skip_before_filter :set_current_user, :only=>[:create]
+  before_filter :save_login_state, :only => [:new, :create]
 
-	def index
-	end
 
-	def show
-		#@can_create_class = @current_user.can_create_class?
-		redirect_to classrooms_path
-	end
+  def index
+  end
 
-	def create
-		prev = User.find_by_email params[:user][:email]
-		if prev
-			flash[:msg] = "There is an account with that email id already!"
-			redirect_to sessions_path and return
-		end
-		@user = User.new params[:user]
-		@user.user_type = User.non_admin_type
-		@user.password = params[:password]
-		@user.save!
-
-		flash[:msg] = "Your account is created!"
-		redirect_to sessions_path
-	end
-end
+  def show
+    redirect_to classrooms_path
+  end
+      def new
+            @user = User.new
+          end
+        def create
+              @user = User.new(params[:user])
+              if @user.save
+                      flash[:notice] = "You signed up successfully"
+                      flash[:color]= "valid"
+                    else
+                      flash[:notice] = "Form is invalid"
+                      flash[:color]= "invalid"
+                    end
+              render "new"
+            end
+        end
