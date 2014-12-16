@@ -1,24 +1,31 @@
 class SessionsController < ApplicationController
-    before_filter :authenticate_user, :except => [:index, :login, :login_attempt, :logout]
-      before_filter :save_login_state, :only => [:index, :login, :login_attempt]
-def login
-          #Login Form
-        end
-      def login_attempt
-            authorized_user = User.authenticate(params[email],params[:login_password])
-            if authorized_user
-              session[:user_id] = authorized_user.id
-              flash[:notice] = "Wow Welcome again, you logged in as #{authorized_user.email}"
-                    redirect_to(:action => 'home')
-                  else
-                    flash[:notice] = "Invalid Email or Password"
-                    flash[:color]= "invalid"
-                    render "login"
-                  end
-          end
-def logout
-  session[:user_id] = nil
-    redirect_to :action => 'login'
-    end
+	skip_before_filter :set_current_user, :only=>[:index, :create]
+	def index
+		user = User.find session[:user] if session[:user]
+		redirect_to user_path user if user
+	end
 
+	def create
+		@id = params[:session][:id]
+		@user = User.find_by_email(@id)
+		unless @user then
+			flash[:msg] = "Authentication Failure!"
+			redirect_to sessions_path and return
+		else
+			if @user.password!=params[:password]
+				flash[:msg] = "Authentication Failure!"
+				redirect_to sessions_path and return
+			end
+			session[:user] = @user.id
+			@current_user = @user
+			redirect_to user_path @current_user
+		end
+	end
+
+	def destroy
+		session[:user] = nil
+		params[:session] = nil
+		flash[:msg] = "You're signed out"
+		redirect_to sessions_path
+	end
 end
