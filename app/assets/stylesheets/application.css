@@ -108,6 +108,7 @@ ul.topbar li a{
 	color: #6c491d;
 	text-decoration:none;
     display: block;
+    padding: 15px 20px;
 }
 
 body {
@@ -151,8 +152,9 @@ ul.topbar li ul li:nth-child(1){
 }
 
 ul.topbar li ul li { 
-  background: #555; 
-  display: block; 
+  background: #555;
+  display: block;
+  padding: 0;
   color: #fff;
   text-shadow: 0 -1px 0 #000;
 }
