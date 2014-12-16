@@ -49,7 +49,7 @@
 								%li
 									=link_to 'Entries Frequency', entries_on_classroom_statistics_path(@classroom, @current_user)
 				-if @classroom && @classregistration.classregistration_type == Classregistration.student
-					%li
+					%li{:class => "title-entries"}
 						=link_to 'All Entries', classroom_virtueentries_path(@classroom)
 
 		%br

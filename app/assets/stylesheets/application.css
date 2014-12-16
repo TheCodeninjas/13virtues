@@ -104,6 +104,22 @@ ul.topbar li {
   transition: all 0.2s;
 }
 
+ul.topbar li.title-entries {
+    font: bold 12px/18px sans-serif;
+    display: inline-block;
+    margin-right: -4px;
+    position: relative;
+    padding: 0;
+    background: #fff;
+    color: #6c491d;
+    cursor: pointer;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
 ul.topbar li a{
 	color: #6c491d;
 	text-decoration:none;
